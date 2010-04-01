@@ -1,11 +1,11 @@
 require "helper"
 
-class TestProxyTarget < Test::Unit::TestCase
+class TestTrueProxyTarget < Test::Unit::TestCase
   def setup
     @target = "target"
-    @proxy = Proxy.new(@target) do
+    @proxy = TrueProxy.new(@target) do
       def length_plus_one
-        proxy_target.length + 1
+        @target.length + 1
       end
     end
   end

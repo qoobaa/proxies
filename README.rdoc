@@ -1,16 +1,22 @@
-= proxy
+= TrueProxy
 
-Description goes here.
+With TrueProxy you can even proxy other proxies. The gem is Ruby 1.8 and 1.9 compatible.
 
-== Note on Patches/Pull Requests
- 
-* Fork the project.
-* Make your feature addition or bug fix.
-* Add tests for it. This is important so I don't break it in a
-  future version unintentionally.
-* Commit, do not mess with rakefile, version, or history.
-  (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
-* Send me a pull request. Bonus points for topic branches.
+== Usage
+
+  TrueProxy.new(target_object) do
+    def extension_method
+      @target.length * 500
+    end
+  end
+
+  TrueProxy.new(target_object, :owner => self, :extend => MyExtension) do
+    def add_owner_and_target_values
+      @target.value + @owner.value
+    end
+  end
+
+  TrueProxy.new(target_object, :extend => [FirstExtension, SecondExtension])
 
 == Copyright
 

@@ -4,7 +4,7 @@ require "test/unit"
 
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), "..", "lib"))
 $LOAD_PATH.unshift(File.dirname(__FILE__))
-require "proxy"
+require "true_proxy"
 
 class Test::Unit::TestCase
 end
