@@ -26,6 +26,7 @@ Gem::Specification.new do |s|
      "lib/proxies.rb",
      "lib/proxies/method_proxy.rb",
      "lib/proxies/object_proxy.rb",
+     "proxies.gemspec",
      "test/helper.rb",
      "test/test_method_proxy_extend.rb",
      "test/test_method_proxy_owner.rb",
