@@ -1,6 +1,6 @@
 = TrueProxy
 
-TrueProxy can even proxy other proxies. The gem is Ruby 1.8 and 1.9 compatible.
+TrueProxy can even proxy other proxies. The gem is Ruby 1.8 and 1.9 compatible (on 1.9 uses BasicObject class).
 
 == Installation
 
