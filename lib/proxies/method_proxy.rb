@@ -29,7 +29,7 @@ module Proxies
       @owner = owner
       @method_name = method_name
 
-      extends = Array(options[:extend])
+      extends = ::Kernel.Array(options[:extend])
       extends << ::Module.new(&block)
       extends.each { |m| m.send(:extend_object, self) }
     end

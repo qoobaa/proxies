@@ -33,9 +33,9 @@ module Proxies
       @target = target
       @owner = options[:owner] if options.key?(:owner)
 
-      extends = Array(options[:extend])
+      extends = ::Kernel.Array(options[:extend])
       extends << ::Module.new(&block)
-      extends << ObjectProxyOwner if defined?(@owner)
+      extends << ::Proxies::ObjectProxyOwner if defined?(@owner)
       extends.each { |m| m.send(:extend_object, self) }
     end
 
