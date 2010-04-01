@@ -5,7 +5,7 @@ class TestObjectProxyTarget < Test::Unit::TestCase
     @target = "target"
     @proxy = ObjectProxy.new(@target) do
       def length_plus_one
-        @target.length + 1
+        proxy_target.length + 1
       end
     end
   end

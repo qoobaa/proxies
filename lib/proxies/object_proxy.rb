@@ -1,4 +1,8 @@
 module Proxies
+  module ObjectProxyOwner
+    def proxy_owner; @owner end
+  end
+
   class ObjectProxy < defined?(BasicObject) ? BasicObject : Object
     instance_methods.each { |m| undef_method(m) if m.to_s !~ /^__/ }
 
@@ -13,13 +17,13 @@ module Proxies
     # ==== Examples
     #   ObjectProxy.new(target_object) do
     #     def extension_method
-    #       @target.length * 500
+    #       proxy_target.length * 500
     #     end
     #   end
     #
     #   ObjectProxy.new(target_object, :owner => self, :extend => MyExtension) do
     #     def add_owner_and_target_values
-    #       @target.value + @owner.value
+    #       proxy_target.value + @owner.value
     #     end
     #   end
     #
@@ -31,11 +35,16 @@ module Proxies
 
       extends = Array(options[:extend])
       extends << ::Module.new(&block)
+      extends << ObjectProxyOwner if defined?(@owner)
       extends.each { |m| m.send(:extend_object, self) }
     end
 
+    def proxy_target
+      @target
+    end
+
     def method_missing(name, *args, &block)
-      @target.send(name, *args, &block)
+      proxy_target.send(name, *args, &block)
     end
   end
 end
