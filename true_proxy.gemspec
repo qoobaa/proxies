@@ -27,7 +27,8 @@ Gem::Specification.new do |s|
      "test/helper.rb",
      "test/test_true_proxy_extend.rb",
      "test/test_true_proxy_owner.rb",
-     "test/test_true_proxy_target.rb"
+     "test/test_true_proxy_target.rb",
+     "true_proxy.gemspec"
   ]
   s.homepage = %q{http://github.com/qoobaa/true_proxy}
   s.rdoc_options = ["--charset=UTF-8"]
