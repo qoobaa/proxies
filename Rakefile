@@ -6,13 +6,14 @@ require "rake"
 begin
   require "jeweler"
   Jeweler::Tasks.new do |gem|
-    gem.name = "true_proxy"
-    gem.summary = %Q{TrueProxy can even proxy other proxies}
-    gem.description = %Q{TrueProxy can even proxy other proxies}
+    gem.name = "proxies"
+    gem.summary = %Q{Proxies can even proxy other proxies}
+    gem.description = %Q{Proxies can even proxy other proxies}
     gem.email = "qoobaa@gmail.com"
-    gem.homepage = "http://github.com/qoobaa/true_proxy"
+    gem.homepage = "http://github.com/qoobaa/proxies"
     gem.authors = ["Jakub Kuźma"]
     gem.add_development_dependency "test-unit", ">= 2"
+    gem.add_development_dependency "mocha"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new
@@ -49,7 +50,7 @@ Rake::RDocTask.new do |rdoc|
   version = File.exist?("VERSION") ? File.read("VERSION") : ""
 
   rdoc.rdoc_dir = "rdoc"
-  rdoc.title = "true_proxy #{version}"
+  rdoc.title = "proxies #{version}"
   rdoc.rdoc_files.include("README*")
   rdoc.rdoc_files.include("lib/**/*.rb")
 end

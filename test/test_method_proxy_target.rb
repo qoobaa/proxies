@@ -1,11 +1,13 @@
 require "helper"
 
-class TestTrueProxyTarget < Test::Unit::TestCase
+class TestMethodProxyTarget < Test::Unit::TestCase
   def setup
     @target = "target"
-    @proxy = TrueProxy.new(@target) do
+    @object = mock
+    @object.expects(:target_method).once.returns(@target)
+    @proxy = MethodProxy.new(@object, :target_method) do
       def length_plus_one
-        @target.length + 1
+        proxy_target.length + 1
       end
     end
   end
