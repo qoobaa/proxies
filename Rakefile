@@ -7,8 +7,8 @@ begin
   require "jeweler"
   Jeweler::Tasks.new do |gem|
     gem.name = "true_proxy"
-    gem.summary = %Q{With TrueProxy you can even proxy other proxies}
-    gem.description = %Q{With TrueProxy you can even proxy other proxies}
+    gem.summary = %Q{TrueProxy can even proxy other proxies}
+    gem.description = %Q{TrueProxy can even proxy other proxies}
     gem.email = "qoobaa@gmail.com"
     gem.homepage = "http://github.com/qoobaa/true_proxy"
     gem.authors = ["Jakub Kuźma"]
