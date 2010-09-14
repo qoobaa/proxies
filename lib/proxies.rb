@@ -1,2 +1,5 @@
-require "proxies/object_proxy"
-require "proxies/method_proxy"
+require "proxies/proxy"
+
+module Proxies
+
+end
