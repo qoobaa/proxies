@@ -12,7 +12,7 @@ module Three
   def three; 3 end
 end
 
-class TestProxyExtend < Test::Unit::TestCase
+class TestProxyExtend < Proxies::TestCase
   def setup
     @target = "target"
     @object = mock

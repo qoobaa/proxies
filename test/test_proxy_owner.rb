@@ -1,6 +1,6 @@
 require "helper"
 
-class TestProxyOwner < Test::Unit::TestCase
+class TestProxyOwner < Proxies::TestCase
   def setup
     @target = "target"
     @object = mock
