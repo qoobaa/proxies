@@ -42,19 +42,19 @@ module Proxies
     #
     #   Proxy.new(lambda { something }, :extend => [FirstExtension, SecondExtension])
 
-    def initialize(lambda, options = {}, &block)
-      @target_lambda = lambda
+    def initialize(lazy_target, options = {}, &block)
+      @lazy_target = lazy_target
       @owner = options[:owner] if options.key?(:owner)
 
       extends = ::Kernel.Array(options[:extend])
       extends << ::Module.new(&block)
       extends << ::Proxies::ProxyOwner if defined?(@owner)
-      extends << ::Proxies::ProxyRespondTo if options[:respond_to]
+      extends << ::Proxies::ProxyRespondTo
       extends.each { |m| m.send(:extend_object, self) }
     end
 
     def proxy_target
-      @target ||= @target_lambda.call
+      defined?(@target) ? @target : @target = @lazy_target.call
     end
 
     def method_missing(name, *args, &block)
