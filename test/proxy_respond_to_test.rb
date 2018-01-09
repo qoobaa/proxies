@@ -1,19 +1,19 @@
-require "helper"
+require "test_helper"
 
-class TestProxyRespondTo < Proxies::TestCase
+class TestProxyRespondTo < Minitest::Test
   def setup
     @target = "target"
     @object = mock
     @object.expects(:target_method).at_most_once.returns(@target)
   end
 
-  test "proxy_respond_to? returns true on existing method" do
+  def test_proxy_respond_to_returns_true_on_existing_method
     proxy = Proxy.new(lambda { @object.target_method }, :owner => @object)
     assert proxy.proxy_respond_to?(:proxy_owner)
   end
 
-  test "proxy_respond_to? returns false on non-existing method" do
+  def test_proxy_respond_to_returns_false_on_non_existing_method
     proxy = Proxy.new(lambda { @object.target_method }, :owner => @object)
-    assert_false proxy.proxy_respond_to?(:non_existing_method)
+    refute proxy.proxy_respond_to?(:non_existing_method)
   end
 end

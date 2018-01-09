@@ -10,7 +10,7 @@ module Proxies
     end
   end
 
-  class Proxy < defined?(BasicObject) ? BasicObject : Object
+  class Proxy < BasicObject
     instance_methods.each { |m| undef_method(m) if m.to_s !~ /^__/ }
 
     # Creates a new proxy for target. You can pass a block (anonymous
@@ -28,19 +28,19 @@ module Proxies
     #     end
     #   end
     #
-    #   Proxy.new(lambda { my_method }, :extend => MyExtension) do
+    #   Proxy.new(lambda { my_method }, extend: MyExtension) do
     #     def add_owner_and_target_values
     #       proxy_target.value + proxy_owner.value
     #     end
     #   end
     #
-    #   Proxy.new(lambda { my_method }, :owner => self) do
+    #   Proxy.new(lambda { my_method }, owner: self) do
     #     def do_something
     #       ...
     #     end
     #   end
     #
-    #   Proxy.new(lambda { something }, :extend => [FirstExtension, SecondExtension])
+    #   Proxy.new(lambda { something }, extend: [FirstExtension, SecondExtension])
 
     def initialize(lazy_target, options = {}, &block)
       @lazy_target = lazy_target

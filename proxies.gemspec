@@ -1,24 +1,39 @@
-# -*- encoding: utf-8 -*-
-require File.expand_path("../lib/proxies/version", __FILE__)
+# coding: utf-8
 
-Gem::Specification.new do |s|
-  s.name        = "proxies"
-  s.version     = Proxies::VERSION
-  s.platform    = Gem::Platform::RUBY
-  s.authors     = ["Jakub Kuźma"]
-  s.email       = ["qoobaa@gmail.com"]
-  s.homepage    = "http://rubygems.org/gems/proxies"
-  s.summary     = "Proxies can even proxy other proxies"
-  s.description = "Proxies can even proxy other proxies"
+lib = File.expand_path("../lib", __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require "proxies/version"
 
-  s.required_rubygems_version = ">= 1.3.6"
-  s.rubyforge_project         = "proxies"
+Gem::Specification.new do |spec|
+  spec.name          = "proxies"
+  spec.version       = Proxies::VERSION
+  spec.platform      = Gem::Platform::RUBY
+  spec.authors       = ["Kuba Kuźma"]
+  spec.email         = ["kuba@kubakuzma.com"]
 
-  s.add_development_dependency "bundler", ">= 1.0.0"
-  s.add_development_dependency "test-unit", ">= 2"
-  s.add_development_dependency "mocha"
+  spec.summary     = "Proxies can even proxy other proxies"
+  spec.description = "Proxies can even proxy other proxies"
+  spec.homepage    = "http://rubygems.org/gems/proxies"
+  spec.license     = "MIT"
 
-  s.files        = `git ls-files`.split("\n")
-  s.executables  = `git ls-files`.split("\n").map{|f| f =~ /^bin\/(.*)/ ? $1 : nil}.compact
-  s.require_path = 'lib'
+  # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
+  # to allow pushing to a single host or delete this section to allow pushing to any host.
+  if spec.respond_to?(:metadata)
+    spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
+  else
+    raise "RubyGems 2.0 or newer is required to protect against " \
+      "public gem pushes."
+  end
+
+  spec.files         = `git ls-files -z`.split("\x0").reject do |f|
+    f.match(%r{^(test|spec|features)/})
+  end
+  spec.bindir        = "exe"
+  spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
+  spec.require_paths = ["lib"]
+
+  spec.add_development_dependency "bundler", "~> 1.16"
+  spec.add_development_dependency "rake", "~> 10.0"
+  spec.add_development_dependency "minitest", "~> 5.0"
+  spec.add_development_dependency "mocha"
 end
