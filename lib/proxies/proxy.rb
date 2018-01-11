@@ -6,6 +6,7 @@ module Proxies
   module ProxyRespondTo
     def proxy_respond_to?(method)
       this = self
+      this = this # suppress a warning message
       !!::Kernel.eval("defined?(this.#{method})")
     end
   end
@@ -59,6 +60,10 @@ module Proxies
 
     def method_missing(name, *args, &block)
       proxy_target.send(name, *args, &block)
+    end
+
+    def respond_to?(name, include_private = false)
+      proxy_target.respond_to?(name, include_private)
     end
   end
 end
